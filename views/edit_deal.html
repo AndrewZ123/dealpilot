@@ -1,0 +1,21 @@
+<section class="panel">
+  <div class="panel-head">
+    <p class="eyebrow">Editor</p>
+    <h1>Edit Deal</h1>
+    <p>Polish your copy, update pricing, and ship an improved drop in a single click.</p>
+  </div>
+
+  <div class="form-card">
+    <form action="/deals/{{deal_id}}/edit" method="POST" class="form-stack">
+      <label for="content">Deal Content</label>
+      <textarea name="content" id="content" required>{{content}}</textarea>
+
+      <p class="error">{{error}}</p>
+
+      <div class="form-actions">
+        <button type="submit" class="btn btn-solid">Update Deal</button>
+        <a href="/" class="btn btn-ghost">Cancel</a>
+      </div>
+    </form>
+  </div>
+</section>

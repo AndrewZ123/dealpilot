@@ -1,0 +1,66 @@
+<section class="panel">
+  <div class="panel-head">
+    <p class="eyebrow">Member Console</p>
+    <h1>Welcome back, {{username}}</h1>
+    <p>{{highlight_copy}}</p>
+  </div>
+
+  <div class="stat-grid">
+    {{stat_cards}}
+  </div>
+</section>
+
+<section class="panel">
+  <div class="panel-head">
+    <p class="eyebrow">Redirect Intelligence</p>
+    <h2>Your clipped links</h2>
+    <p>Monitor clicks for every vanity route and confirm that disclosures sit ahead of the destination.</p>
+  </div>
+
+  <div class="data-table">
+    <div class="table-head">
+      <span>Link</span>
+      <span class="hide-mobile">Destination</span>
+      <span>Clicks</span>
+      <span>Created</span>
+      <span></span>
+      <span></span>
+    </div>
+    {{redirect_rows}}
+  </div>
+</section>
+
+<section class="panel">
+  <div class="panel-head">
+    <p class="eyebrow">Deal Logs</p>
+    <h2>Your live posts</h2>
+    <p>Each entry is preloaded with the FTC disclosure block so you can publish with confidence.</p>
+  </div>
+
+  <div class="owned-deal-list">
+    {{deal_rows}}
+  </div>
+</section>
+
+<script>
+  document.addEventListener('click', async (event) => {
+    const button = event.target.closest('.btn-copy');
+    if (!button) return;
+
+    const copyValue = button.getAttribute('data-copy');
+    if (!copyValue) return;
+
+    const original = button.textContent;
+    try {
+      await navigator.clipboard.writeText(copyValue);
+      button.textContent = 'Copied!';
+    } catch (err) {
+      console.error('Copy failed', err);
+      button.textContent = 'Failed';
+    }
+
+    setTimeout(() => {
+      button.textContent = original;
+    }, 2000);
+  });
+</script>

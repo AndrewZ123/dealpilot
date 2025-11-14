@@ -1,0 +1,32 @@
+<h1>Create New Redirect</h1>
+
+<div class="form-card">
+  <form method="post" action="/redirects/new">
+    <label>Mavely link
+      <input type="text" name="target_url" placeholder="https://mavely.app.link/..." required />
+    </label>
+
+    <button type="submit">Create Redirect</button>
+    <p class="error">{{error}}</p>
+    <div class="result">{{result}}</div>
+  </form>
+</div>
+
+<script>
+  // Auto copy if result exists
+  window.onload = () => {
+    const linkEl = document.getElementById("redirectLink");
+    if (linkEl) {
+      linkEl.select();
+      linkEl.setSelectionRange(0, 99999);
+      navigator.clipboard.writeText(linkEl.value);
+    }
+  };
+
+  function copyLink() {
+    const box = document.getElementById("redirectLink");
+    box.select();
+    box.setSelectionRange(0, 99999);
+    navigator.clipboard.writeText(box.value);
+  }
+</script>
